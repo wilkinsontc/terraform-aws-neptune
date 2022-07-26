@@ -69,3 +69,22 @@ variable "neptune_security_group_name" {
   default     = "neptune_sg"
   description = "Name of the security group for neptune"
 }
+
+###########################   Tags    #########################################################
+variable "sn_tags" {
+  type        = map(string)
+  default     = {}
+  description = "The service now tags that come from the devops pipeline.  Declare the variable \"sn_tags\" of type map(string) in your own project to get them"
+}
+
+variable "billing_token" {
+  type        = string
+  default     = null
+  description = "billing token defined by finance to track cloud resources"
+}
+
+variable "other_tags" {
+  type        = map(string)
+  default     = {}
+  description = "Other tags to be used on these resources beyond what ServiceNow provides"
+}
