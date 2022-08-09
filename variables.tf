@@ -52,7 +52,7 @@ variable "aws_neptune_cluster_parameter_group" {
   )
 
   default = {
-    family  = "neptune_cluster_1"
+    family  = "neptune1"
     name    = "example"
   }
 
