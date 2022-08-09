@@ -27,7 +27,7 @@ variable "instance" {
     apply_immediately = true
     count             = 2
     identifier        = "instance"
-    instance_class    = "db.r4.large"
+    instance_class    = "db.t4g.medium"
   }
   description = "Neptune Instance data"
 }
@@ -41,6 +41,22 @@ variable "subnet_group_name" {
 variable "vpc_id" {
   type        = string
   description = "Security Group needs to know where to be made"
+}
+
+variable "aws_neptune_cluster_parameter_group" {
+  type = object(
+    {
+      family  = string
+      name    = string
+    }
+  )
+
+  default = {
+    family  = "neptune_cluster_1"
+    name    = "example"
+  }
+
+  description = "Values for the neptune parameter group"
 }
 
 variable "aws_neptune_parameter_group" {
