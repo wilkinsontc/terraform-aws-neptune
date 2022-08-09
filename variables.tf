@@ -56,7 +56,7 @@ variable "aws_neptune_cluster_parameter_group" {
     name    = "example"
   }
 
-  description = "Values for the neptune parameter group"
+  description = "Values for the neptune cluster parameter group"
 }
 
 variable "aws_neptune_parameter_group" {
