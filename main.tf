@@ -22,11 +22,6 @@ resource "aws_neptune_parameter_group" "this" {
     name  = "neptune_query_timeout"
     value = var.neptune_query_timeout
   }
-
-  parameter {
-    name  = "neptune_enable_audit_log"
-    value = 1
-  }
 }
 
 resource "aws_neptune_cluster" "this" {

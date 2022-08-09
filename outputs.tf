@@ -9,3 +9,7 @@ output "cluster" {
 output "subnet" {
   value = aws_neptune_subnet_group.this
 }
+
+output "security_group" {
+  value = data.aws_security_group.this.id
+}
