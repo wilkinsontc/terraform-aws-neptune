@@ -22,6 +22,11 @@ resource "aws_neptune_cluster_parameter_group" "this" {
     name  = "neptune_query_timeout"
     value = var.neptune_query_timeout
   }
+
+  parameter {
+    name  = "neptune_enable_audit_log"
+    value = 1
+  }
 }
 
 resource "aws_neptune_parameter_group" "this" {
@@ -56,7 +61,7 @@ resource "aws_neptune_cluster_instance" "this" {
   apply_immediately            = var.instance.apply_immediately
   cluster_identifier           = aws_neptune_cluster.this.id
   count                        = var.instance.count
-  identifier                   = var.instance.identifier
+  identifier_prefix            = var.instance.identifier_prefix
   instance_class               = var.instance.instance_class
   neptune_parameter_group_name = aws_neptune_parameter_group.this.name
   neptune_subnet_group_name    = aws_neptune_subnet_group.this.name

@@ -19,14 +19,14 @@ variable "instance" {
     {
       apply_immediately = bool
       count             = number
-      identifier        = string
+      identifier_prefix = string
       instance_class    = string
     }
   )
   default = {
     apply_immediately = true
     count             = 2
-    identifier        = "instance"
+    identifier_prefix = "instance"
     instance_class    = "db.t4g.medium"
   }
   description = "Neptune Instance data"
