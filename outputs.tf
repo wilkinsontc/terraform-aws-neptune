@@ -11,5 +11,5 @@ output "subnet" {
 }
 
 output "security_group" {
-  value = data.aws_security_group.this.id
+  value = data.aws_security_group.this
 }
