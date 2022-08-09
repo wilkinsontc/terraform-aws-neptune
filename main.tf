@@ -5,37 +5,18 @@ data "aws_subnet_ids" "this" {
 resource "aws_neptune_subnet_group" "this" {
   name       = var.subnet_group_name
   subnet_ids = data.aws_subnet_ids.this.ids
-  tags = module.tagging.tags
+  tags       = module.tagging.tags
 }
 
-resource "aws_security_group" "this" {
-  name        = var.neptune_security_group_name
-  vpc_id      = var.vpc_id
-  description = "Manages Access to Neptune resources"
-  tags = module.tagging.tags
-
-  ingress {
-    description     = "Neptune port"
-    from_port       = 8182
-    to_port         = 8182
-    protocol        = "tcp"
-    self            = true
-  }
-
-  egress {
-    description       = "All outbound"
-    from_port         = 0
-    to_port           = 0
-    protocol          = "-1"
-    cidr_blocks       = ["0.0.0.0/0"]
-    ipv6_cidr_blocks  = ["::/0"]
-  }
+data "aws_security_group" "this" {
+  name   = var.neptune_security_group_name
+  vpc_id = var.vpc_id
 }
 
 resource "aws_neptune_parameter_group" "this" {
   family = var.aws_neptune_parameter_group.family
   name   = var.aws_neptune_parameter_group.name
-  tags = module.tagging.tags
+  tags   = module.tagging.tags
 
   parameter {
     name  = "neptune_query_timeout"
@@ -62,7 +43,7 @@ resource "aws_neptune_cluster" "this" {
   skip_final_snapshot                  = var.cluster.skip_final_snapshot
   storage_encrypted                    = true
   tags                                 = module.tagging.tags
-  vpc_security_group_ids               = [aws_security_group.this.id]
+  vpc_security_group_ids               = [data.aws_security_group.this.id]
 }
 
 resource "aws_neptune_cluster_instance" "this" {
