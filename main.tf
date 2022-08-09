@@ -13,6 +13,17 @@ data "aws_security_group" "this" {
   vpc_id = var.vpc_id
 }
 
+resource "aws_neptune_cluster_parameter_group" "this" {
+  family = var.aws_neptune_parameter_group.family
+  name   = var.aws_neptune_parameter_group.name
+  tags   = module.tagging.tags
+
+  parameter {
+    name  = "neptune_query_timeout"
+    value = var.neptune_query_timeout
+  }
+}
+
 resource "aws_neptune_parameter_group" "this" {
   family = var.aws_neptune_parameter_group.family
   name   = var.aws_neptune_parameter_group.name
@@ -31,7 +42,7 @@ resource "aws_neptune_cluster" "this" {
   enable_cloudwatch_logs_exports       = ["audit"]
   iam_database_authentication_enabled  = var.cluster.iam_database_authentication_enabled
   kms_key_arn                          = var.cluster.kms_key_arn
-  neptune_cluster_parameter_group_name = aws_neptune_parameter_group.this.name
+  neptune_cluster_parameter_group_name = aws_neptune_cluster_parameter_group.this.name
   neptune_subnet_group_name            = aws_neptune_subnet_group.this.name
   preferred_backup_window              = var.cluster.preferred_backup_window
   preferred_maintenance_window         = var.cluster.preferred_maintenance_window
