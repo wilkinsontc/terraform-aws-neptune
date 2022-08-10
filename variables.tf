@@ -43,36 +43,16 @@ variable "vpc_id" {
   description = "Security Group needs to know where to be made"
 }
 
-variable "aws_neptune_cluster_parameter_group" {
-  type = object(
-    {
-      family  = string
-      name    = string
-    }
-  )
-
-  default = {
-    family  = "neptune1"
-    name    = "example"
-  }
-
-  description = "Values for the neptune cluster parameter group"
+variable "aws_neptune_cluster_parameter_group_name" {
+  type        = string
+  default     = "example"
+  description = "Name for the neptune cluster parameter group"
 }
 
-variable "aws_neptune_parameter_group" {
-  type = object(
-    {
-      family  = string
-      name    = string
-    }
-  )
-
-  default = {
-    family  = "neptune1"
-    name    = "example"
-  }
-
-  description = "Values for the neptune parameter group"
+variable "aws_neptune_parameter_group_name" {
+  type        = string
+  default     = "example"
+  description = "Name for the neptune parameter group"
 }
 
 variable "neptune_query_timeout" {

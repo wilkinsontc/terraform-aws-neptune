@@ -14,8 +14,8 @@ data "aws_security_group" "this" {
 }
 
 resource "aws_neptune_cluster_parameter_group" "this" {
-  family = var.aws_neptune_cluster_parameter_group.family
-  name   = var.aws_neptune_cluster_parameter_group.name
+  family = "neptune1"
+  name   = var.aws_neptune_cluster_parameter_group_name
   tags   = module.tagging.tags
 
   parameter {
@@ -30,8 +30,8 @@ resource "aws_neptune_cluster_parameter_group" "this" {
 }
 
 resource "aws_neptune_parameter_group" "this" {
-  family = var.aws_neptune_parameter_group.family
-  name   = var.aws_neptune_parameter_group.name
+  family = "neptune1"
+  name   = var.aws_neptune_parameter_group_name
   tags   = module.tagging.tags
 
   parameter {
