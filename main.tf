@@ -44,6 +44,7 @@ resource "aws_neptune_cluster" "this" {
   apply_immediately                    = var.cluster.apply_immediately
   backup_retention_period              = var.cluster.backup_retention_period
   cluster_identifier                   = var.cluster.cluster_identifier
+  deletion_protection                  = true
   enable_cloudwatch_logs_exports       = ["audit"]
   iam_database_authentication_enabled  = var.cluster.iam_database_authentication_enabled
   kms_key_arn                          = var.cluster.kms_key_arn
