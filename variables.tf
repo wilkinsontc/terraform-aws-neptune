@@ -60,10 +60,10 @@ variable "neptune_query_timeout" {
   description = "Timeout value for neptune queries in millisecond"
 }
 
-variable "neptune_security_group_name" {
-  type        = string
-  default     = "neptune_sg"
-  description = "Name of the security group for neptune"
+variable "neptune_security_group_names" {
+  type        = list
+  default     = ["neptune_sg", "data_sg"]
+  description = "Names of the security groups for neptune"
 }
 
 ###########################   Tags    #########################################################

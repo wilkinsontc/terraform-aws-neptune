@@ -8,9 +8,16 @@ resource "aws_neptune_subnet_group" "this" {
   tags       = module.tagging.tags
 }
 
-data "aws_security_group" "this" {
-  name   = var.neptune_security_group_name
-  vpc_id = var.vpc_id
+data "aws_security_groups" "this" {
+  filter {
+    name   = "group-name"
+    values = var.neptune_security_group_names
+  }
+
+  filter {
+    name = "vpc-id"
+    values = [var.vpc_id]
+  }
 }
 
 resource "aws_neptune_cluster_parameter_group" "this" {
@@ -55,7 +62,7 @@ resource "aws_neptune_cluster" "this" {
   skip_final_snapshot                  = var.cluster.skip_final_snapshot
   storage_encrypted                    = true
   tags                                 = module.tagging.tags
-  vpc_security_group_ids               = [data.aws_security_group.this.id]
+  vpc_security_group_ids               = data.aws_security_groups.this.ids
 }
 
 resource "aws_neptune_cluster_instance" "this" {
