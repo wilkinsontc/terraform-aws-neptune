@@ -43,6 +43,12 @@ variable "vpc_id" {
   description = "Security Group needs to know where to be made"
 }
 
+variable "aws_neptune_cluster_parameter_group_family" {
+  type        = string
+  default     = "neptune1.3"
+  description = "Family for the neptune parameter group"
+}
+
 variable "aws_neptune_cluster_parameter_group_name" {
   type        = string
   default     = "example"
