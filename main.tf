@@ -21,7 +21,7 @@ data "aws_security_groups" "this" {
 }
 
 resource "aws_neptune_cluster_parameter_group" "this" {
-  family = var.aws_neptune_cluster_parameter_group_name
+  family = var.aws_neptune_cluster_parameter_group_family
   name   = var.aws_neptune_cluster_parameter_group_name
   tags   = module.tagging.tags
 
