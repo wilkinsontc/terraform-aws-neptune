@@ -37,7 +37,7 @@ resource "aws_neptune_cluster_parameter_group" "this" {
 }
 
 resource "aws_neptune_parameter_group" "this" {
-  family = war.aws_neptune_parameter_group_family
+  family = var.aws_neptune_parameter_group_family
   name   = var.aws_neptune_parameter_group_name
   tags   = module.tagging.tags
 
