@@ -49,6 +49,12 @@ variable "aws_neptune_cluster_parameter_group_name" {
   description = "Name for the neptune cluster parameter group"
 }
 
+variable "aws_neptune_parameter_group_family" {
+  type        = string
+  default     = "neptune1.3"
+  description = "Family for the neptune parameter group"
+}
+
 variable "aws_neptune_parameter_group_name" {
   type        = string
   default     = "example"
