@@ -1,10 +1,13 @@
-data "aws_subnet_ids" "this" {
-  vpc_id = var.vpc_id
+data "aws_subnets" "this" {
+  filter {
+    name = "vpc-id"
+    values = [var.vpc_id]
+  }
 }
 
 resource "aws_neptune_subnet_group" "this" {
   name       = var.subnet_group_name
-  subnet_ids = data.aws_subnet_ids.this.ids
+  subnet_ids = data.aws_subnets.this.ids
   tags       = module.tagging.tags
 }
 
