@@ -1,6 +1,6 @@
 module "tagging" {
   source = "app.terraform.io/ICS/tagging/tagging"
-  version = "~>1.2"
+  version = "1.3.1"
 
   # Required
   sn_tags                = var.sn_tags
